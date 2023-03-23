@@ -21,4 +21,8 @@ server.use(cors('*' as CorsOptions))
 //   res.json({ greeting: greetings[index] })
 // })
 
+server.get('*', (req, res) => {
+  res.sendFile(join(__dirname, './public/index.html'))
+})
+
 export default server
