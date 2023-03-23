@@ -56,10 +56,11 @@ function getAllItersAndCombos(
   }
 }
 
-function getNext(allPermutations: Array<[]>, iteration: number) {
+function getNext(allPermutations: Array<[]>) {
   const split = allPermutations.length / 3
+  console.log(split)
   group1 = allPermutations[0]
-  group2 = allPermutations[split]
+  group2 = allPermutations[split * 1.5]
   group3 = allPermutations[split * 2]
   console.log(group1, group2, group3)
 }
