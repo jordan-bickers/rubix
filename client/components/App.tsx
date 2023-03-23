@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react'
 import { getGreeting } from '../apiClient'
+import NumGroups from './NumGroups'
 
 const App = () => {
   const [greeting, setGreeting] = useState('')
@@ -28,6 +29,8 @@ const App = () => {
           There was an error retrieving the greeting.
         </p>
       )}
+      <NumGroups />
+
       <button onClick={() => setCount(count + 1)}>Click</button>
     </>
   )
