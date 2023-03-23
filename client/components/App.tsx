@@ -1,11 +1,23 @@
 import { useState, useEffect } from 'react'
 import { getGreeting } from '../apiClient'
 import NumGroups from './NumGroups'
+import { useNavigate, Route, Routes } from 'react-router-dom'
+import Result from './Result'
 
 const App = () => {
   const [greeting, setGreeting] = useState('')
   const [count, setCount] = useState(0)
   const [isError, setIsError] = useState(false)
+
+  const [group, setGroup] = useState(0)
+  const [iterations, setIterations] = useState(0)
+
+  const dataSetter = (groups: number, iters: number): void => {
+    setGroup(groups)
+    setIterations(iters)
+  }
+  console.log('Groups', group)
+  console.log('Iterations', iterations)
 
   useEffect(() => {
     getGreeting()
@@ -18,10 +30,17 @@ const App = () => {
         console.log(err)
         setIsError(true)
       })
-  }, [count])
+  }, [])
 
   return (
     <>
+      <Routes>
+        <Route path="/" element={<NumGroups groupos={dataSetter} />}></Route>
+        <Route
+          path="/result"
+          element={<Result numGroups={group} numIters={iterations} />}
+        ></Route>
+      </Routes>
       {count}
       <h1>{greeting}</h1>
       {isError && (
@@ -29,7 +48,6 @@ const App = () => {
           There was an error retrieving the greeting.
         </p>
       )}
-      <NumGroups />
 
       <button onClick={() => setCount(count + 1)}>Click</button>
     </>

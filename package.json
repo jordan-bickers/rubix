@@ -43,6 +43,8 @@
     ]
   },
   "dependencies": {
+    "asserts": "^4.0.2",
+    "combinatorial-generators": "^1.1.2",
     "cors": "^2.8.5",
     "express": "^4.17.2",
     "knex": "^2.4.2",
