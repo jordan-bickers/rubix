@@ -18,10 +18,13 @@ interface Props {
 function NumGroups({ groupos }: Props) {
   const [num, updateNum] = useState(1)
   const [iterations, updateIterations] = useState(1)
+  const navigate = useNavigate()
 
   const handleSubmit = (evt: FormEvent) => {
     evt.preventDefault()
     groupos(num, iterations)
+    navigate('/result')
+
     console.log('num', num)
     console.log('iterations', iterations)
   }

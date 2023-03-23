@@ -1,6 +1,8 @@
 import { useState, useEffect } from 'react'
 import { getGreeting } from '../apiClient'
 import NumGroups from './NumGroups'
+import { useNavigate, Route, Routes } from 'react-router-dom'
+import Result from './Result'
 
 const App = () => {
   const [greeting, setGreeting] = useState('')
@@ -32,6 +34,13 @@ const App = () => {
 
   return (
     <>
+      <Routes>
+        <Route path="/" element={<NumGroups groupos={dataSetter} />}></Route>
+        <Route
+          path="/result"
+          element={<Result numGroups={group} numIters={iterations} />}
+        ></Route>
+      </Routes>
       {count}
       <h1>{greeting}</h1>
       {isError && (
@@ -39,7 +48,6 @@ const App = () => {
           There was an error retrieving the greeting.
         </p>
       )}
-      <NumGroups groupos={dataSetter} />
 
       <button onClick={() => setCount(count + 1)}>Click</button>
     </>
