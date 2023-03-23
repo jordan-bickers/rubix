@@ -18,3 +18,41 @@ export function getRandomName(): Promise<ExternalMember> {
     .get(`${externalURL}`)
     .then((response) => response.body.results[0].name)
 }
+
+export function addMember(member: Member): Promise<Member> {
+  return request
+    .post(`${serverURL}`)
+    .send(member)
+    .then((res) => {
+      return res.body
+    })
+}
+
+export function deleteMember(memberId: number): Promise<unknown> {
+  return request.del(`${serverURL}/${memberId}`).then((res) => res)
+}
+
+export function updateMember(
+  id: number,
+  updatedMember: Member
+): Promise<Member> {
+  return request
+    .patch(`${serverURL}/${id}`)
+    .send({ updatedMember })
+    .then((res) => {
+      return res.body
+    })
+  // .catch(errorHandler('PATCH', '/v1/comments/:id'))
+}
+
+// function errorHandler(method: string, route: string) {
+//   return (err: Error) => {
+//     if (err.message === 'Not Found') {
+//       throw Error(
+//         `Error: You need to implement an API route for ${method} ${route}`
+//       )
+//     } else {
+//       throw Error(`${err.message} on ${method} ${route}`)
+//     }
+//   }
+// }
