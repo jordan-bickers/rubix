@@ -1,12 +1,30 @@
 import { ChangeEvent, FormEvent, useState } from 'react'
 import {} from '../apiClient'
+import { useNavigate } from 'react-router-dom'
 
-function NumGroups() {
-  const [num, updateNum] = useState(0)
-  const [iterations, updateIterations] = useState(0)
+//  const navigate = useNavigate();
+// useEffect(() => {
+//   if (userIsInactive) {
+//     fake.logout();
+//     navigate("/session-timed-out");
+//   }
+// }, [userIsInactive]);
+// }
+
+interface Props {
+  groupos: (groups: number, iterations: number) => void
+}
+
+function NumGroups({ groupos }: Props) {
+  const [num, updateNum] = useState(1)
+  const [iterations, updateIterations] = useState(1)
+  const navigate = useNavigate()
 
   const handleSubmit = (evt: FormEvent) => {
     evt.preventDefault()
+    groupos(num, iterations)
+    navigate('/result')
+
     console.log('num', num)
     console.log('iterations', iterations)
   }
