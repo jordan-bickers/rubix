@@ -7,6 +7,16 @@ const App = () => {
   const [count, setCount] = useState(0)
   const [isError, setIsError] = useState(false)
 
+  const [group, setGroup] = useState(0)
+  const [iterations, setIterations] = useState(0)
+
+  const dataSetter = (groups: number, iters: number): void => {
+    setGroup(groups)
+    setIterations(iters)
+  }
+  console.log('Groups', group)
+  console.log('Iterations', iterations)
+
   useEffect(() => {
     getGreeting()
       .then((greeting) => {
@@ -18,7 +28,7 @@ const App = () => {
         console.log(err)
         setIsError(true)
       })
-  }, [count])
+  }, [])
 
   return (
     <>
@@ -29,7 +39,7 @@ const App = () => {
           There was an error retrieving the greeting.
         </p>
       )}
-      <NumGroups />
+      <NumGroups groupos={dataSetter} />
 
       <button onClick={() => setCount(count + 1)}>Click</button>
     </>
