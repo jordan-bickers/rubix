@@ -5,6 +5,6 @@ export function getGreeting(): Promise<string> {
   return request.get('/greeting').then((res) => res.body.greeting)
 }
 
-export function getAllMembers(): Promise<Member> {
+export function getAllMembers(): Promise<Member[]> {
   return request.get('/').then((res) => res.body)
 }
