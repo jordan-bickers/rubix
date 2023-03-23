@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react'
 import { getGreeting } from '../apiClient'
-import NumGroups from './NumGroups'
+import Form from './Form'
 import { useNavigate, Route, Routes } from 'react-router-dom'
 import Result from './Result'
 
@@ -35,7 +35,7 @@ const App = () => {
   return (
     <>
       <Routes>
-        <Route path="/" element={<NumGroups groupos={dataSetter} />}></Route>
+        <Route path="/" element={<Form groupos={dataSetter} />}></Route>
         <Route
           path="/result"
           element={<Result numGroups={group} numIters={iterations} />}
