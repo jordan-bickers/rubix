@@ -16,3 +16,17 @@ export function addMember(
     '*'
   )
 }
+
+export function deleteMember(id: number, db = connection): Promise<number> {
+  return db('members').del().where('id', id)
+}
+
+export function updateMember(
+  id: number,
+  updatedMember: Member,
+  db = connection
+): Promise<Member[]> {
+  return db('members')
+    .update({ ...updatedMember }, ['id', 'name', 'group'])
+    .where('id', id)
+}
