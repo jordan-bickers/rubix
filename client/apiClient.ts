@@ -18,3 +18,12 @@ export function getRandomName(): Promise<ExternalMember> {
     .get(`${externalURL}`)
     .then((response) => response.body.results[0].name)
 }
+
+export function addMember(member: Member): Promise<Member> {
+  return request
+    .post(`${serverURL}`)
+    .send(member)
+    .then((res) => {
+      return res.body
+    })
+}
