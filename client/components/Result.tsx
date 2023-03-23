@@ -1,12 +1,17 @@
 import { useState } from 'react'
 import NumGroups from './NumGroups'
 
-function Result(numGroups) {
+interface Props {
+  numGroups: number
+  numIters: number
+}
+
+function Result({ numGroups, numIters }: Props) {
   const [groups, setGroups] = useState(0)
 
   return (
     <>
-      <p>hello</p>
+      <p>{numGroups}</p> <p>{numIters}</p>
     </>
   )
 }
