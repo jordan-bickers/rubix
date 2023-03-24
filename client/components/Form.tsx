@@ -15,7 +15,7 @@ interface Props {
   groupos: (groups: number, iterations: number) => void
 }
 
-function NumGroups({ groupos }: Props) {
+function Form({ groupos }: Props) {
   const [num, updateNum] = useState(1)
   const [iterations, updateIterations] = useState(1)
   const navigate = useNavigate()
@@ -76,4 +76,4 @@ function NumGroups({ groupos }: Props) {
   )
 }
 
-export default NumGroups
+export default Form
