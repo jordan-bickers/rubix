@@ -2,7 +2,6 @@ import { Router } from 'express'
 const router = Router()
 
 import { getAllMembers, addMember, deleteMember, updateMember } from '../db/db'
-// import { Member } from '../../common/member'
 
 router.get('/', (req, res) => {
   getAllMembers()

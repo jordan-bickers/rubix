@@ -11,15 +11,8 @@ const server = express()
 server.use(express.json())
 server.use(express.static(join(__dirname, './public')))
 
-server.use('/api/v1/', members)
+server.use('/api/v1', members)
 server.use(cors('*' as CorsOptions))
-
-// server.get('/greeting', (req, res) => {
-//   const greetings = ['hola', 'hi', 'hello', 'howdy']
-//   const index = Math.floor(Math.random() * greetings.length)
-//   console.log(index)
-//   res.json({ greeting: greetings[index] })
-// })
 
 server.get('*', (req, res) => {
   res.sendFile(join(__dirname, './public/index.html'))
