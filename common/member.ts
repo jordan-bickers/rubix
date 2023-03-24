@@ -1,7 +1,7 @@
 export interface Member {
   id?: number
   name: string
-  group: string
+  group: string | null
 }
 
 export interface ExternalMember {
