@@ -17,6 +17,7 @@ const App = () => {
 
   return (
     <>
+      <h1>RUBIX</h1>
       <Routes>
         <Route path="/" element={<Form groupos={dataSetter} />}></Route>
         <Route
