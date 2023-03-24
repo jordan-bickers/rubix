@@ -5,8 +5,19 @@ interface Props {
   index: number
 }
 
-function Group({ group }: Props) {
-  return <></>
+function Group({ group, index }: Props) {
+  return (
+    <>
+      <h3>Group {index + 1}:</h3>
+      {group.map((member) => {
+        return (
+          <p key={member.id}>
+            {member.name}, {member.id}
+          </p>
+        )
+      })}
+    </>
+  )
 }
 
 export default Group
