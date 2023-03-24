@@ -1,36 +1,19 @@
-import { useState, useEffect } from 'react'
-import { getGreeting } from '../apiClient'
+import { useState } from 'react'
 import Form from './Form'
-import { useNavigate, Route, Routes } from 'react-router-dom'
+import { Route, Routes } from 'react-router-dom'
 import Result from './Result'
+import { Member } from '../../common/member'
 
 const App = () => {
-  const [greeting, setGreeting] = useState('')
-  const [count, setCount] = useState(0)
-  const [isError, setIsError] = useState(false)
-
   const [group, setGroup] = useState(0)
   const [iterations, setIterations] = useState(0)
+  const [members, setMembers] = useState([] as Member[])
 
-  const dataSetter = (groups: number, iters: number): void => {
+  const dataSetter = (groups: number, iters: number, membs: Member[]): void => {
     setGroup(groups)
     setIterations(iters)
+    setMembers(membs)
   }
-  console.log('Groups', group)
-  console.log('Iterations', iterations)
-
-  useEffect(() => {
-    getGreeting()
-      .then((greeting) => {
-        console.log(greeting)
-        setGreeting(greeting)
-        setIsError(false)
-      })
-      .catch((err) => {
-        console.log(err)
-        setIsError(true)
-      })
-  }, [])
 
   return (
     <>
@@ -38,7 +21,9 @@ const App = () => {
         <Route path="/" element={<Form groupos={dataSetter} />}></Route>
         <Route
           path="/result"
-          element={<Result numGroups={group} numIters={iterations} />}
+          element={
+            <Result numGroups={group} numIters={iterations} members={members} />
+          }
         ></Route>
       </Routes>
     </>
