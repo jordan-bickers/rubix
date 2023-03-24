@@ -10,7 +10,9 @@ export function getGreeting(): Promise<string> {
 }
 
 export function getAllMembers(): Promise<Member[]> {
-  return request.get(`${serverURL}`).then((res) => res.body)
+  return request.get(serverURL).then((res) => {
+    return res.body
+  })
 }
 
 export function getRandomName(): Promise<ExternalMember> {

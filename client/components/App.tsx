@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react'
 // import { getGreeting } from '../apiClient'
 import Form from './Form'
-import { useNavigate, Route, Routes } from 'react-router-dom'
+import { Route, Routes } from 'react-router-dom'
 import Result from './Result'
 import AddMember from './AddMember'
 
@@ -12,10 +12,12 @@ const App = () => {
 
   const [group, setGroup] = useState(0)
   const [iterations, setIterations] = useState(0)
+  const [members, setMembers] = useState([] as Member[])
 
-  const dataSetter = (groups: number, iters: number): void => {
+  const dataSetter = (groups: number, iters: number, membs: Member[]): void => {
     setGroup(groups)
     setIterations(iters)
+    setMembers(membs)
   }
   console.log('Groups', group)
   console.log('Iterations', iterations)
@@ -35,11 +37,14 @@ const App = () => {
 
   return (
     <>
+      <h1>RUBIX</h1>
       <Routes>
         <Route path="/" element={<Form groupos={dataSetter} />}></Route>
         <Route
           path="/result"
-          element={<Result numGroups={group} numIters={iterations} />}
+          element={
+            <Result numGroups={group} numIters={iterations} members={members} />
+          }
         ></Route>
         <Route path="/add" element={<AddMember />} />
       </Routes>

@@ -1,6 +1,7 @@
-import { ChangeEvent, FormEvent, useState } from 'react'
-import {} from '../apiClient'
+import { ChangeEvent, FormEvent, useState, useEffect } from 'react'
+import { getAllMembers } from '../apiClient'
 import { useNavigate } from 'react-router-dom'
+import { Member } from '../../common/member'
 
 //  const navigate = useNavigate();
 // useEffect(() => {
@@ -12,21 +13,20 @@ import { useNavigate } from 'react-router-dom'
 // }
 
 interface Props {
-  groupos: (groups: number, iterations: number) => void
+  groupos: (groups: number, iterations: number, membs: Member[]) => void
 }
 
 function Form({ groupos }: Props) {
+  const [members, setMembers] = useState([] as Member[])
+
   const [num, updateNum] = useState(1)
   const [iterations, updateIterations] = useState(1)
   const navigate = useNavigate()
 
   const handleSubmit = (evt: FormEvent) => {
     evt.preventDefault()
-    groupos(num, iterations)
+    groupos(num, iterations, members)
     navigate('/result')
-
-    console.log('num', num)
-    console.log('iterations', iterations)
   }
 
   const handleChange = (evt: ChangeEvent<HTMLSelectElement>) => {
@@ -36,6 +36,17 @@ function Form({ groupos }: Props) {
   const handleIterations = (evt: ChangeEvent<HTMLSelectElement>) => {
     updateIterations(Number(evt.target.value))
   }
+
+  useEffect(() => {
+    getAllMembers()
+      .then((data) => {
+        setMembers(data)
+        console.log(data)
+      })
+      .catch((err) => {
+        console.log(err)
+      })
+  }, [])
 
   return (
     <>
@@ -72,6 +83,11 @@ function Form({ groupos }: Props) {
 
         <button type="submit">Submit</button>
       </form>
+      <ul>
+        {members.map((e) => (
+          <li key={e.id}>{e.name}</li>
+        ))}
+      </ul>
     </>
   )
 }
