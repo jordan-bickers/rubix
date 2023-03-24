@@ -1,7 +1,8 @@
-import { Member } from '../../common/member'
+import { Member as MemberType } from '../../common/member'
+import DisplayMember from './DisplayMember'
 
 interface Props {
-  group: Member[]
+  group: MemberType[]
   index: number
 }
 
@@ -10,11 +11,7 @@ function Group({ group, index }: Props) {
     <>
       <h3>Group {index + 1}:</h3>
       {group.map((member) => {
-        return (
-          <p key={member.id}>
-            {member.name}, {member.id}
-          </p>
-        )
+        return <DisplayMember key={member.id} member={member} />
       })}
     </>
   )
