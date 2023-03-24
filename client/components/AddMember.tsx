@@ -9,8 +9,8 @@ function AddMember() {
 
   const [newName, setNewName] = useState('')
 
-  const getExternalName = (e: FormEvent) => {
-    e.preventDefault()
+  const getExternalName = () => {
+    // e.preventDefault()
     getRandomName()
       .then((extMember) => setNewName(extMember.first + ' ' + extMember.last))
       .catch((err) => {
@@ -43,7 +43,7 @@ function AddMember() {
 
         <button type="submit">SUBMIT NEW MEMBER</button>
       </form>
-      <button onClick={getExternalName()}>GET A RANDOM NAME</button>
+      <button onClick={getExternalName}>GET A RANDOM NAME</button>
     </>
   )
 }
