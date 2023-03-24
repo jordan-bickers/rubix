@@ -3,6 +3,7 @@ import { getGreeting } from '../apiClient'
 import Form from './Form'
 import { useNavigate, Route, Routes } from 'react-router-dom'
 import Result from './Result'
+import AddMember from './AddMember'
 
 const App = () => {
   const [greeting, setGreeting] = useState('')
@@ -40,6 +41,7 @@ const App = () => {
           path="/result"
           element={<Result numGroups={group} numIters={iterations} />}
         ></Route>
+        <Route path="/add" element={<AddMember variant="new" />} />
       </Routes>
     </>
   )
